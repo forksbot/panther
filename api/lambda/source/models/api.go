@@ -69,7 +69,7 @@ type PutIntegrationInput struct {
 type PutIntegrationSettings struct {
 	AWSAccountID       *string   `genericapi:"redact" json:"awsAccountId,omitempty" validate:"required,len=12,numeric"`
 	IntegrationLabel   *string   `json:"integrationLabel,omitempty" validate:"required,integrationLabel,excludesall='<>&\""`
-	IntegrationType    *string   `json:"integrationType" validate:"required,oneof=aws-scan aws-s3 amazon-eventbridge log-pulling"`
+	IntegrationType    *string   `json:"integrationType" validate:"required,oneof=aws-scan aws-s3"`
 	CWEEnabled         *bool     `json:"cweEnabled,omitempty"`
 	RemediationEnabled *bool     `json:"remediationEnabled,omitempty"`
 	ScanIntervalMins   *int      `json:"scanIntervalMins,omitempty" validate:"omitempty,oneof=60 180 360 720 1440"`
@@ -86,7 +86,7 @@ type PutIntegrationSettings struct {
 
 // ListIntegrationsInput allows filtering by the IntegrationType or Enabled fields
 type ListIntegrationsInput struct {
-	IntegrationType *string `json:"integrationType" validate:"omitempty,oneof=aws-scan aws-s3 amazon-eventbridge log-pulling"`
+	IntegrationType *string `json:"integrationType" validate:"omitempty,oneof=aws-scan aws-s3"`
 }
 
 // UpdateIntegrationSettingsInput is used to update integration settings.
